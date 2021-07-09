@@ -138,22 +138,25 @@ function ubootswatch_customize_register($wp_customize) {
 	));
 }
 
-function ubootshatch_content($args) {
+function ubootswatch_content($args) {
+	$args["page-header-class"]="mb-4";
+
 	if (!is_singular()) {
+		$args["page-header-class"]="";
+
 		while (have_posts()) {
 			the_post();
-			get_template_part("template-parts/partial",null,$args);
+			get_template_part("content",null,$args);
 		}
-	}
-
-	else if (is_singular("post")) {
-		the_post();
-		get_template_part("template-parts/post",null,$args);
 	}
 
 	else {
 		the_post();
-		get_template_part("template-parts/page",null,$args);
+
+		if (get_post_type()=="post")
+			$args["page-header-class"]="";
+
+		get_template_part("content",null,$args);
 	}
 }
 

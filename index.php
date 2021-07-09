@@ -4,7 +4,7 @@
 <?php get_header(null,$args); ?>
 
 <div class="container">
-	<?php ubootshatch_content($args); ?>
+	<?php ubootswatch_content($args); ?>
 </div>
 
 <?php /*get_sidebar();*/ ?>

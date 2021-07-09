@@ -2,7 +2,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
 
 	<?php wp_head(); ?>
@@ -13,7 +13,9 @@
 <header>
 	<nav class="navbar navbar-expand-sm <?php echo esc_attr($args["nav-class"]); ?>">
 		<div class="container">
-			<a class="navbar-brand" href="#">Navbar</a>
+			<a class="navbar-brand" href="<?php echo esc_attr(get_home_url()); ?>">
+				<?php echo esc_html(get_bloginfo('name')) ?>
+			</a>
 			<button class="navbar-toggler collapsed" type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarColor01"
 					aria-controls="navbarColor01" aria-expanded="false"
