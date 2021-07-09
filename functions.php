@@ -1,5 +1,13 @@
 <?php
 
+class Ubootswatch_Nav_Walker extends Walker_Nav_Menu {
+	public function start_lvl( &$output, $depth = 0, $args = array() ) {
+		if ( 'header-menu' === $args->theme_location ) {
+			$output.='<ul class="dropdown-menu">';
+		}
+	}
+}
+
 add_theme_support('title-tag');
 
 add_action("wp_enqueue_scripts","ubootswatch_wp_enqueue_scripts");
@@ -33,14 +41,37 @@ function ubootswatch_init() {
 
 add_filter("nav_menu_css_class","ubootswatch_nav_menu_css_class",10,4);
 function ubootswatch_nav_menu_css_class($classes, $item, $args, $depth) {
-	$classes[]="nav-item";
+	if ($args->theme_location=="header-menu") {
+		if ($depth==0) {
+			$classes[]="nav-item";
+
+			if (in_array('menu-item-has-children',$item->classes))
+				$classes[] = 'dropdown';
+		}
+	}
 
 	return $classes;
 }
 
 add_filter("nav_menu_link_attributes","ubootswatch_nav_menu_link_attributes",10,4);
 function ubootswatch_nav_menu_link_attributes($attrs, $item, $args, $depth) {
-	$attrs["class"]="nav-link";
+	if ($attrs["aria-current"])
+		$attrs["class"].=" active";
+
+	if ($args->theme_location=="header-menu") {
+		if ($depth==1) {
+			$attrs["class"].=" dropdown-item";
+		}
+
+		else {
+			$attrs["class"].=" nav-link";
+
+			if (in_array('menu-item-has-children',$item->classes)) {
+				$attrs["data-bs-toggle"]="dropdown";
+				$attrs["class"].=' dropdown-toggle';
+			}
+		}
+	}
 
 	return $attrs;
 }
@@ -105,6 +136,25 @@ function ubootswatch_customize_register($wp_customize) {
 			"transparent"=>"Transparent",
 		)
 	));
+}
+
+function ubootshatch_content($args) {
+	if (!is_singular()) {
+		while (have_posts()) {
+			the_post();
+			get_template_part("template-parts/partial",null,$args);
+		}
+	}
+
+	else if (is_singular("post")) {
+		the_post();
+		get_template_part("template-parts/post",null,$args);
+	}
+
+	else {
+		the_post();
+		get_template_part("template-parts/page",null,$args);
+	}
 }
 
 function ubootswatch_get_args() {

@@ -23,11 +23,14 @@
 
 			<div class="navbar-collapse collapse" id="navbarColor01" style="">
 				<?php
+					$walker=new Ubootswatch_Nav_Walker();
+
 					wp_nav_menu(array(
 						"theme_location"=>"header-menu",
 						"container"=>false,
 						"menu_class"=>"navbar-nav me-auto menu",
-						"depth"=>1,
+						"depth"=>2,
+						"walker"=>$walker
 					));
 				?>
 			</div>
