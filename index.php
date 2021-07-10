@@ -4,10 +4,10 @@
 
 <div class="container mb-5">
 	<div class="row">
-		<div class="col-lg-9">
+		<div class="col-lg-8">
 			<?php ubootswatch_content($args); ?>
 		</div>
-		<div class="d-none d-lg-block col-lg-3">
+		<div class="d-none d-lg-block col-lg-4">
 			<?php get_sidebar(); ?>
 		</div>
 	</div>

@@ -41,7 +41,6 @@ function ubootswatch_init() {
 
 add_action("widgets_init","ubootswatch_widgets_init");
 function ubootswatch_widgets_init() {
-//	error_log("init widget");
 	register_sidebar(
 		array(
 			'name'          => 'Sidebar',
@@ -57,21 +56,13 @@ function ubootswatch_widgets_init() {
 		array(
 			'name'          => 'Footer',
 			'id'            => 'footer',
-			'before_widget' => '<div class="col-4">',
+			'before_widget' => '<div class="col-6 col-md-4">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h4>',
 			'after_title'   => '</h4>',
 		) 
 	);
 }
-
-/*<div class="card border-primary">
-  <div class="card-header">Header</div>
-  <div class="card-body">
-    <h4 class="card-title">Primary card title</h4>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-  </div>
-</div>*/
 
 add_filter("nav_menu_css_class","ubootswatch_nav_menu_css_class",10,4);
 function ubootswatch_nav_menu_css_class($classes, $item, $args, $depth) {
