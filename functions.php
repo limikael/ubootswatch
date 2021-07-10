@@ -17,6 +17,12 @@ function ubootswatch_wp_enqueue_scripts() {
 		"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 	);
 
+	wp_enqueue_script(
+		"ubootswatch",
+		get_template_directory_uri()."/ubootswatch.js",
+		array("jquery")
+	);
+
 	$theme=get_theme_mod("ubootswatch_theme");
 	if ($theme)
 		$cssUrl="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/".$theme."/bootstrap.min.css";
@@ -58,7 +64,7 @@ function ubootswatch_widgets_init() {
 			'id'            => 'footer',
 			'before_widget' => '<div class="col-6 col-md-4">',
 			'after_widget'  => '</div>',
-			'before_title'  => '<h4>',
+			'before_title'  => '<h4 class="text-reset">',
 			'after_title'   => '</h4>',
 		) 
 	);
@@ -99,6 +105,10 @@ function ubootswatch_nav_menu_link_attributes($attrs, $item, $args, $depth) {
 				$attrs["class"].=' dropdown-toggle';
 			}
 		}
+	}
+
+	else {
+		$attrs["class"]="text-reset text-decoration-none hover-underline";
 	}
 
 	return $attrs;
@@ -160,8 +170,7 @@ function ubootswatch_customize_register($wp_customize) {
 		"section"=>"ubootswatch",
 		"choices"=>array(
 			"static"=>"Static",
-			"fixed"=>"Fixed",
-			"fixed-large"=>"Fixed Large",
+			"fixed"=>"Fixed"
 		)
 	));
 
@@ -216,21 +225,12 @@ function ubootswatch_get_args() {
 
 	// Nav style.
 	$navStyle=get_theme_mod("ubootswatch_nav_style","static");
-	$args["nav-style"]="";
-	$args["container-style"]="";
+	$args["container-class"]="";
 
-	switch ($navStyle) {
-		case "fixed":
-			$args["nav-class"].=" fixed-top";
-			$args["nav-style"].="height: 60px";
-			$args["container-style"]="padding-top: 60px";
-			break;
+	if ($navStyle=="fixed") {
+		$args["nav-class"].=" fixed-top";
+		$args["container-class"].=" using-fixed-header";
 
-		case "fixed-large":
-			$args["nav-class"].=" fixed-top";
-			$args["nav-style"].="height: 70px";
-			$args["container-style"]="padding-top: 70px";
-			break;
 	}
 
 	// Footer.

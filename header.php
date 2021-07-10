@@ -11,8 +11,7 @@
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
 <header>
-	<nav class="navbar navbar-expand-md <?php echo esc_attr($args["nav-class"]); ?>"
-			style="<?php echo esc_attr($args["nav-style"]); ?>">
+	<nav class="navbar navbar-expand-md <?php echo esc_attr($args["nav-class"]); ?>">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo esc_attr(get_home_url()); ?>">
 				<?php echo esc_html(get_bloginfo('name')) ?>

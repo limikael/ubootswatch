@@ -1,5 +1,5 @@
 <h1 class="mt-5 pb-2 border-bottom <?php echo esc_attr($args["page-header-class"]); ?>">
-	<a href="<?php echo esc_attr(get_permalink()); ?>" class="text-decoration-none text-dark">
+	<a href="<?php echo esc_attr(get_permalink()); ?>" class="text-decoration-none text-reset">
 		<?php the_title(); ?>
 	</a>
 </h1>

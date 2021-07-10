@@ -19,3 +19,11 @@ footer {
 	flex-shrink: 0;
 	width: 100%;
 }
+
+a.hover-underline:hover {
+	text-decoration: underline !important;
+}
+
+.container.using-fixed-header {
+	margin-top: var(--nav-height);
+}
