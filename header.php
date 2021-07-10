@@ -38,4 +38,10 @@
 			</div>
 		</div>
 	</nav>
+	<script>
+		(function() {
+			let h=document.querySelector("nav").clientHeight;
+			document.documentElement.style.setProperty("--nav-height",h+"px");
+		})();
+	</script>
 </header>
