@@ -2,7 +2,7 @@
 
 <?php get_header(null,$args); ?>
 
-<div class="container mb-5">
+<div class="container mb-5" style="<?php echo esc_attr($args["container-style"]); ?>">
 	<div class="row">
 		<div class="col-lg-8">
 			<?php ubootswatch_content($args); ?>

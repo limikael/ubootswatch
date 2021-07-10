@@ -151,6 +151,20 @@ function ubootswatch_customize_register($wp_customize) {
 		)
 	));
 
+	$wp_customize->add_setting("ubootswatch_nav_style",array(
+		"default"=>"static"
+	));
+	$wp_customize->add_control("ubootswatch_nav_style",array(
+		"type"=>"select",
+		"label"=>"Nav Style",
+		"section"=>"ubootswatch",
+		"choices"=>array(
+			"static"=>"Static",
+			"fixed"=>"Fixed",
+			"fixed-large"=>"Fixed Large",
+		)
+	));
+
 	$wp_customize->add_setting("ubootswatch_footer_color",array(
 		"default"=>"dark"
 	));
@@ -191,6 +205,7 @@ function ubootswatch_content($args) {
 function ubootswatch_get_args() {
 	$args=array();
 
+	// Nav color.
 	$navBackground=get_theme_mod("ubootswatch_nav_color","primary");
 	$navClass="navbar-dark";
 
@@ -199,6 +214,26 @@ function ubootswatch_get_args() {
 
 	$args["nav-class"]="$navClass bg-$navBackground";
 
+	// Nav style.
+	$navStyle=get_theme_mod("ubootswatch_nav_style","static");
+	$args["nav-style"]="";
+	$args["container-style"]="";
+
+	switch ($navStyle) {
+		case "fixed":
+			$args["nav-class"].=" fixed-top";
+			$args["nav-style"].="height: 60px";
+			$args["container-style"]="padding-top: 60px";
+			break;
+
+		case "fixed-large":
+			$args["nav-class"].=" fixed-top";
+			$args["nav-style"].="height: 70px";
+			$args["container-style"]="padding-top: 70px";
+			break;
+	}
+
+	// Footer.
 	$footerColor=get_theme_mod("ubootswatch_footer_color","dark");
 	switch ($footerColor) {
 		case "dark":
