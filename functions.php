@@ -193,6 +193,9 @@ function ubootswatch_customize_register($wp_customize) {
 			"transparent"=>"Transparent",
 		)
 	));
+
+
+//	$wp_customize->remove_control('blogdescription');
 }
 
 function ubootswatch_content($args) {

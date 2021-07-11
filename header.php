@@ -14,6 +14,10 @@
 	<nav class="navbar navbar-expand-md <?php echo esc_attr($args["nav-class"]); ?>">
 		<div class="container">
 			<a class="navbar-brand" href="<?php echo esc_attr(get_home_url()); ?>">
+				<?php if (get_site_icon_url(50)) { ?>
+					<img src="<?php echo esc_attr(get_site_icon_url(50)); ?>"
+							class="header-icon d-inline-block "/>
+				<?php } ?>
 				<?php echo esc_html(get_bloginfo('name')) ?>
 			</a>
 			<button class="navbar-toggler collapsed" type="button"

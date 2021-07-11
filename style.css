@@ -27,3 +27,7 @@ a.hover-underline:hover {
 .container.using-fixed-header {
 	margin-top: var(--nav-height);
 }
+
+img.header-icon {
+	height: 1.5em;
+}
