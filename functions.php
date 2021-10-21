@@ -12,34 +12,48 @@ add_theme_support('title-tag');
 
 add_action("wp_enqueue_scripts","ubootswatch_wp_enqueue_scripts",0,9);
 function ubootswatch_wp_enqueue_scripts() {
+	$data=get_file_data(__DIR__."/style.css",array(
+		'Version'=>'Version',
+	));
+
+	$ver=$data["Version"];
+
 	$theme=get_theme_mod("ubootswatch_theme");
 	if ($theme)
-		$cssUrl="https://cdn.jsdelivr.net/npm/bootswatch@5.0.2/dist/".$theme."/bootstrap.min.css";
+		$cssUrl="https://cdn.jsdelivr.net/npm/bootswatch@5.1.3/dist/".$theme."/bootstrap.min.css";
 
 	else
-		$cssUrl="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css";
+		$cssUrl="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css";
 
-	wp_enqueue_style("bootstrap-css",$cssUrl);
+	wp_enqueue_style("bootstrap-css",$cssUrl,array(),$ver);
+
+	wp_enqueue_style(
+		"bootstrap-icons",
+		"https://cdn.jsdelivr.net/npm/bootstrap-icons@1.6.1/font/bootstrap-icons.min.css",
+		array(),
+		$ver
+	);
 
 	wp_enqueue_style(
 		"ubootswatch",
 		get_template_directory_uri()."/style.css",
-		"1.0.0"
+		array(),
+		$ver
 	);
 
 	wp_enqueue_script(
 		"ubootswatch",
 		get_template_directory_uri()."/ubootswatch.js",
 		array("jquery"),
-		"1.0.0",
+		$ver,
 		true
 	);
 
 	wp_enqueue_script(
 		"bootstrap",
-		"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js",
+		"https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js",
 		array(),
-		"1.0.0",
+		$ver,
 		true
 	);
 }
