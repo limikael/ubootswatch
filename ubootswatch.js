@@ -14,7 +14,8 @@
 	let resizeObserver=new ResizeObserver(function() {
 		let el=document.querySelector("nav .navbar-collapse");
 
-		if (el.classList.contains("collapse") &&
+		if (el &&
+				el.classList.contains("collapse") &&
 				!el.classList.contains("show"))
 			updateNavHeight();
 	});
