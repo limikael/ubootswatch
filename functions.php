@@ -208,6 +208,18 @@ function ubootswatch_customize_register($wp_customize) {
 		)
 	));
 
+	$wp_customize->add_setting("ubootswatch_sidebar",array(
+		"default"=>"show"
+	));
+	$wp_customize->add_control("ubootswatch_sidebar",array(
+		"type"=>"select",
+		"label"=>"Sidebar on Large Screens",
+		"section"=>"ubootswatch",
+		"choices"=>array(
+			"show"=>"Show Sidebar",
+			"hide"=>"Center Content and Hide Sidebar",
+		)
+	));
 
 //	$wp_customize->remove_control('blogdescription');
 }
