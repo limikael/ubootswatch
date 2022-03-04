@@ -204,6 +204,7 @@ function ubootswatch_customize_register($wp_customize) {
 		"choices"=>array(
 			"dark"=>"Dark",
 			"light"=>"Light",
+			"black"=>"Black",
 			"transparent"=>"Transparent",
 		)
 	));
@@ -277,6 +278,10 @@ function ubootswatch_get_args() {
 
 		case "light":
 			$args["footer-class"]="bg-light text-dark";
+			break;
+
+		case "black":
+			$args["footer-class"]="bg-black text-white";
 			break;
 
 		case "transparent":
